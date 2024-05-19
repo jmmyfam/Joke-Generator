@@ -1,10 +1,56 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 @import "~bootstrap/scss/bootstrap";
-
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 body {
-  background-color: antiquewhite;
-  color: brown;
+  background: rgb(255, 175, 3);
+  color: white;
   text-align: center;
-  margin-top: 100px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  flex-direction: column; 
+}
+
+.header {
+  font-family: 'DM Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  position: static;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 60px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+#app {
+  background: #2a2438;
+  width: 500px;
+  height: 500px; 
+  box-shadow: 
+  10px 10px 15px rgba(0, 0, 0, 0.5), 
+  -10px -10px 15px rgba(255, 255, 255, 0.1); 
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+#jokeContainer {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+button {
+  transition: transform 0.3s ease;
+  font-style: bold;
+}
+
+button:hover {
+  transform: scale(1.10);
 }
