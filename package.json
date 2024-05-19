@@ -1,5 +1,5 @@
 {
-  "name": "webpack-5.0-template",
+  "name": "e27-joke-generator",
   "version": "1.0.0",
   "description": "",
   "main": "public/main.js",
@@ -9,7 +9,7 @@
     "build": "webpack --mode production"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jimmy Pham",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^6.2.0",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.14.0",
     "@popperjs/core": "^2.9.3",
-    "bootstrap": "^5.1.0",
+    "bootstrap": "^5.3.3",
     "dotenv": "^10.0.0",
     "firebase": "^8.2.0",
     "sass": "^1.51.0"

@@ -2,24 +2,68 @@
 // import ViewDirectorBasedOnUserAuthStatus from '../utils/viewDirector';
 import 'bootstrap'; // import bootstrap elements and js
 import '../styles/main.scss';
+import getJoke from '../api/promises';
 
-const init = () => {
-  document.querySelector('#app').innerHTML = `
-    <h1>HELLO! You are up and running!</h1>
-    <small>Open your dev tools</small><br />
-    <button class="btn btn-danger" id="click-me">Click ME!</button><br />
-    <hr />
-    <h2>These are font awesome icons:</h2>
-    <i class="fas fa-user fa-4x"></i> <i class="fab fa-github-square fa-5x"></i>
+const htmlStructure = () => {
+  document.querySelector('#jokeContainer').innerHTML = `
+    <button class="btn btn-warning" id="get-joke">Get a Joke</button>
   `;
-  console.warn('YOU ARE UP AND RUNNING!');
-
-  document
-    .querySelector('#click-me')
-    .addEventListener('click', () => console.warn('You clicked that button!'));
-
-  // USE WITH FIREBASE AUTH
-  // ViewDirectorBasedOnUserAuthStatus();
 };
 
-init();
+const events = () => {
+  const jokeContainer = document.querySelector('#jokeContainer');
+
+  const displaySingleJoke = (joke) => {
+    jokeContainer.innerHTML = `
+      <p>${joke}</p>
+      <button class="btn btn-warning" id="get-another-joke">Get Another Joke</button>
+    `;
+    document.querySelector('#get-another-joke').addEventListener('click', () => {
+      htmlStructure();
+      events();
+    });
+  };
+
+  const displayTwoPartJoke = (setup, delivery) => {
+    jokeContainer.innerHTML = `
+      <p>${setup}</p>
+      <button class="btn btn-warning" id="get-punchline">Get Punchline</button>
+    `;
+    document.querySelector('#get-punchline').addEventListener('click', () => {
+      jokeContainer.innerHTML += `
+        <p>${delivery}</p>
+        <button class="btn btn-warning" id="get-another-joke">Get Another Joke</button>
+      `;
+      document.querySelector('#get-punchline').remove();
+      document.querySelector('#get-another-joke').addEventListener('click', () => {
+        htmlStructure();
+        events();
+      });
+    });
+  };
+
+  document.querySelector('#get-joke').addEventListener('click', () => {
+    getJoke().then((joke) => {
+      switch (joke.type) {
+        case 'single':
+          displaySingleJoke(joke.joke); // directly display joke for single part
+          break;
+        case 'twopart':
+          displayTwoPartJoke(joke.setup, joke.delivery); // display setup & delivery for twopart
+          break;
+        default:
+          jokeContainer.innerHTML = 'No jokes available';
+          break;
+      }
+    }).catch(() => {
+      jokeContainer.innerHTML = 'No jokes available';
+    });
+  });
+};
+
+const startApp = () => {
+  htmlStructure();
+  events();
+};
+
+startApp();
