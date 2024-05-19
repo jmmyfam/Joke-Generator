@@ -52,11 +52,11 @@ const events = () => {
           displayTwoPartJoke(joke.setup, joke.delivery); // display setup & delivery for twopart
           break;
         default:
-          console.error('Invalid joke type:', joke.type);
+          jokeContainer.innerHTML = 'No jokes available';
           break;
       }
-    }).catch((error) => {
-      console.error('Error fetching joke:', error);
+    }).catch(() => {
+      jokeContainer.innerHTML = 'No jokes available';
     });
   });
 };
