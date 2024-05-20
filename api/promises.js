@@ -1,4 +1,4 @@
-const jokeEndpoint = 'https://v2.jokeapi.dev/joke/Programming';
+const jokeEndpoint = 'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit';
 
 const getJoke = () => new Promise((resolve, reject) => {
   fetch(jokeEndpoint, {
